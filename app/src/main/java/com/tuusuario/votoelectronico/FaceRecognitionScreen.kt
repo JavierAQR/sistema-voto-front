@@ -139,7 +139,12 @@ fun FaceRecognitionScreen(
             Spacer(modifier = Modifier.height(20.dp))
             val timestamp = System.currentTimeMillis()
             AsyncImage(
-                model = "$baseUrl$fotoOficialUrl?v=$timestamp",
+                // ANTES
+                // model = "$baseUrl$fotoOficialUrl?v=$timestamp"
+
+                // AHORA — la URL ya viene completa desde Cloudinary
+                model = if (fotoOficialUrl.startsWith("http")) fotoOficialUrl
+        else "$baseUrl$fotoOficialUrl",
                 contentDescription = "Foto RENIEC",
                 modifier = Modifier.size(140.dp).clip(CircleShape).border(3.dp, Color.Green, CircleShape)
             )
